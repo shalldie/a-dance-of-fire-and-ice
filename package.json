@@ -1,0 +1,44 @@
+{
+  "name": "a-dance-of-file-and-ice",
+  "version": "1.0.0",
+  "description": "A canvas game (A Dance of Fire and Ice)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shalldie/a-dance-of-file-and-ice.git"
+  },
+  "keywords": [
+    "file",
+    "ice",
+    "dance",
+    "canvas",
+    "game"
+  ],
+  "author": "shalldie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shalldie/a-dance-of-file-and-ice/issues"
+  },
+  "homepage": "https://github.com/shalldie/a-dance-of-file-and-ice#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.4000",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.0"
+  }
+}
