@@ -3,12 +3,13 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        index: [path.join(__dirname, '../src/index.js')]
+        index: [path.join(__dirname, '../src/index.ts')]
     },
 
     output: {
         path: path.join(__dirname, '../dist'),
-        filename: '[name].js',
+        filename: 'a-dance-of-fire-and-ice.js',
+        // filename: '[name].js',
         publicPath: '/dist/'
     },
 
@@ -27,7 +28,9 @@ module.exports = {
                 use: ['url-loader']
             },
             {
-                test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"
+                test: /\.(js|ts)$/,
+                exclude: /node_modules/,
+                use: ['babel-loader', 'ts-loader']
             }
         ]
     }
