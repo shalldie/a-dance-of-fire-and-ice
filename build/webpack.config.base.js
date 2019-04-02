@@ -13,6 +13,10 @@ module.exports = {
         publicPath: '/dist/'
     },
 
+    resolve: {
+        extensions: ['.scss',  '.ts', '.js']
+    },
+
     module: {
         rules: [
             {

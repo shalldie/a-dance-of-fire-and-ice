@@ -1,0 +1,34 @@
+$block: #d99f74;
+$background: #c28a61;
+$bwid: 100px;
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    margin: 20px auto;
+    overflow: hidden;
+    background-color: $background;
+    background-image: linear-gradient(
+            180deg,
+            transparent,
+            transparent 25%,
+            $block 25%,
+            $block 75%,
+            transparent 75%,
+            transparent
+        ),
+        linear-gradient(
+            90deg,
+            transparent,
+            transparent 25%,
+            $block 25%,
+            $block 75%,
+            transparent 75%,
+            transparent
+        );
+    background-size: $bwid $bwid;
+}
