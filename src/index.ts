@@ -16,4 +16,5 @@ function adjustSize() {
     // ].join(';');
 }
 
-adjustSize();
+// adjustSize();
+
