@@ -7,6 +7,8 @@
  */
 export default interface IShape {
 
+    [key: string]: any;
+
     /**
      * x坐标
      *

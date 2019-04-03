@@ -6,11 +6,11 @@ export default abstract class Shape implements IShape {
     /**
      * 当前画布的上下文对象 context
      *
-     * @private
+     * @protected
      * @type {CanvasRenderingContext2D}
      * @memberof Shape
      */
-    private ctx: CanvasRenderingContext2D = Config.ctx;
+    protected ctx: CanvasRenderingContext2D = Config.ctx;
 
     public x = 0;
 
@@ -21,6 +21,7 @@ export default abstract class Shape implements IShape {
     public height = 0;
 
     constructor(shape?: IShape) {
+        // shape && Object.keys(shape).forEach(key => this[key] = shape[key]);
         shape && Object.assign(this, shape);
     }
 

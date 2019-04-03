@@ -43,11 +43,11 @@
             <div v-for="(item,y) in arr" class="row">
                 <div
                     class="item"
-                    :class="{ checked: !!~findItemIndex(x, y) }"
+                    :class="{ checked: !!getTextByPoint(x,y) }"
                     v-for="(xx,x) in arr[y]"
                     @click="toggleItem(x,y)"
                 >
-                    {{ getTextByPoint(x, y) }}
+                    {{ getTextByPoint(x, y) || x + ',' + y }}
                 </div>
             </div>
         </div>
@@ -60,6 +60,18 @@
                         arr: [],
                         list: []
                     };
+                },
+                computed: {
+                    getTextByPoint() {
+                        var dict = {};
+                        for (var i = 0; i < this.list.length; i++) {
+                            var item = this.list[i];
+                            dict[item.x + ',' + item.y] = i + 1;
+                        }
+                        return function(x, y) {
+                            return dict[x + ',' + y];
+                        };
+                    }
                 },
                 methods: {
                     toggleItem(x, y) {
@@ -79,17 +91,6 @@
                         }
                         return -1;
                     },
-                    getTextByPoint(x, y) {
-                        const index = this.findItemIndex(x, y);
-                        if (~index) {
-                            return index + 1;
-                        }
-                        return x + ',' + y;
-                    },
-                    exportToConsole() {
-                        window.list = this.list;
-                        console.log('在list变量中');
-                    },
                     save() {
                         window.localStorage.setItem(
                             'list',
@@ -103,6 +104,18 @@
                             );
                             this.list = list;
                         } catch (ex) {}
+                    },
+                    exportToConsole() {
+                        var arr = JSON.parse(JSON.stringify(this.arr));
+                        for (var i = 0; i < this.list.length; i++) {
+                            var item = this.list[i];
+                            arr[item.x][item.y] = i + 1;
+                        }
+                        window.list = JSON.stringify(arr, null, '').replace(
+                            /,\[/g,
+                            ',\n['
+                        );
+                        console.log('在list变量中');
                     }
                 },
                 watch: {
@@ -123,9 +136,6 @@
                     this.restore();
                 }
             });
-        </script>
-        <script>
-        var cacheList=[{"x":22,"y":50},{"x":23,"y":50},{"x":24,"y":50},{"x":25,"y":50},{"x":26,"y":50},{"x":27,"y":50},{"x":28,"y":50},{"x":29,"y":50},{"x":30,"y":50},{"x":31,"y":50},{"x":32,"y":50},{"x":33,"y":50},{"x":33,"y":49},{"x":34,"y":49},{"x":34,"y":50},{"x":35,"y":50},{"x":36,"y":50},{"x":37,"y":50},{"x":38,"y":50},{"x":39,"y":50},{"x":40,"y":50},{"x":41,"y":50},{"x":41,"y":49},{"x":40,"y":49},{"x":40,"y":48},{"x":40,"y":47},{"x":41,"y":47},{"x":42,"y":47},{"x":43,"y":47},{"x":44,"y":47},{"x":44,"y":46},{"x":43,"y":46},{"x":43,"y":45},{"x":43,"y":44},{"x":44,"y":44},{"x":45,"y":44},{"x":46,"y":44},{"x":46,"y":43},{"x":45,"y":43},{"x":45,"y":42},{"x":45,"y":41},{"x":46,"y":41},{"x":47,"y":41},{"x":48,"y":41},{"x":48,"y":40},{"x":47,"y":40},{"x":47,"y":39},{"x":47,"y":38},{"x":48,"y":38},{"x":49,"y":38},{"x":50,"y":38},{"x":50,"y":37},{"x":49,"y":37},{"x":49,"y":36},{"x":49,"y":35},{"x":49,"y":34},{"x":49,"y":33},{"x":49,"y":32},{"x":48,"y":32},{"x":47,"y":32},{"x":46,"y":32},{"x":46,"y":33},{"x":47,"y":33},{"x":47,"y":34},{"x":47,"y":35},{"x":46,"y":35},{"x":45,"y":35},{"x":44,"y":35},{"x":44,"y":36},{"x":45,"y":36},{"x":45,"y":37},{"x":45,"y":38},{"x":44,"y":38},{"x":43,"y":38},{"x":42,"y":38},{"x":42,"y":39},{"x":43,"y":39},{"x":43,"y":40},{"x":43,"y":41},{"x":42,"y":41},{"x":41,"y":41},{"x":40,"y":41},{"x":40,"y":42}];
         </script>
     </body>
 </html>

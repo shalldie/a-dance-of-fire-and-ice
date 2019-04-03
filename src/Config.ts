@@ -1,3 +1,4 @@
+import mapArr from './map.json';
 
 /**
  * 游戏相关配置、全局变量
@@ -67,5 +68,51 @@ export default class Config {
      */
     static get GAME_HEIGHT() {
         return Config.GAME_WIDTH / Config.whScale;
+    }
+
+    /**
+     * 每个方块的尺寸
+     *
+     * @static
+     * @memberof Config
+     */
+    static BLOCK_SIZE = 40;
+
+    /**
+     * 地图
+     *
+     * @static
+     * @memberof Config
+     */
+    static readonly map = mapArr;
+
+    static get mapWidth() {
+        return Config.map.length;
+    }
+
+    static get mapHeight() {
+        return Config.map[0].length;
+    }
+
+    /**
+     * canvas 宽度
+     *
+     * @readonly
+     * @static
+     * @memberof Config
+     */
+    static get CANVAS_WIDTH() {
+        return Config.mapWidth * Config.BLOCK_SIZE;
+    }
+
+    /**
+     * canvas 高度
+     *
+     * @readonly
+     * @static
+     * @memberof Config
+     */
+    static get CANVAS_HEIGHT() {
+        return Config.mapHeight * Config.BLOCK_SIZE;
     }
 }
