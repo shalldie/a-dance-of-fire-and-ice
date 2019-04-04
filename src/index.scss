@@ -31,4 +31,8 @@ body {
             transparent
         );
     background-size: $bwid $bwid;
+
+    .canvas {
+        transition: 0.5s;
+    }
 }

@@ -43,6 +43,7 @@ export default class Stone extends Shape {
 
     constructor(shape?: IShape) {
         super(shape);
+        shape && Object.assign(this, shape);
     }
 
     draw() {

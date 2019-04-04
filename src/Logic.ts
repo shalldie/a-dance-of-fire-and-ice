@@ -30,6 +30,9 @@ export default class Logic {
             for (let y = 0; y < Config.mapHeight; y++) {
                 const step = Config.map[x][y];
                 if (step > 0) {
+                    // const stone = new Stone({ x, y });
+                    // stone.step = step;
+                    // list.push(stone);
                     list.push(new Stone({ x, y, step }));
                 }
             }
@@ -51,8 +54,21 @@ export default class Logic {
 
     private moveToCenter() {
         const stone = this.stones[this.currentStep - 1];
+        const center = {
+            x: Config.GAME_WIDTH / (2 * Config.BLOCK_SIZE),
+            y: Config.GAME_HEIGHT / (2 * Config.BLOCK_SIZE)
+        };
+        const offset = {
+            x: center.x - stone.x,
+            y: center.y - stone.y
+        };
         Config.canvas.style.cssText = [
-            `transform:translate3d(${-stone.x * stone.size}px,${-stone.y * stone.size}px,0)`
+            `transform:translate3d(${offset.x * stone.size}px,${offset.y * stone.size}px,0)`
         ].join(';');
+    }
+
+    public moveNext() {
+        this.currentStep++;
+        this.moveToCenter();
     }
 }

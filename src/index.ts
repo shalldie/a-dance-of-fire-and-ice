@@ -3,4 +3,4 @@ import './index.scss';
 import Logic from './Logic';
 
 
-new Logic();
+window['logic'] = new Logic();
