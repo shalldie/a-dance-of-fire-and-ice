@@ -1,5 +1,5 @@
 import IShape from './IShape';
-import Config from '../Config';
+import Config from '../game/Config';
 
 export default abstract class Shape implements IShape {
 

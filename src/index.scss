@@ -34,5 +34,6 @@ body {
 
     .canvas {
         transition: 0.5s;
+        transition-timing-function: linear;
     }
 }

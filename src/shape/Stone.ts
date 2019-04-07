@@ -1,16 +1,17 @@
 import Shape from "./Shape";
 import IShape from "./IShape";
-import Config from '../Config';
+import Config from '../game/Config';
 
 export default class Stone extends Shape {
 
-    private borderColor = '#929b9c';
+    // private borderColor = '#929b9c';
+    private borderColor = '#666';
 
     private backgroundColor = '#c1c1cd';
 
     // private size = Config.BLOCK_SIZE;
 
-    private offsetSize = 4;
+    private offsetSize = 2;
 
     public size = Config.BLOCK_SIZE;
 
@@ -55,14 +56,14 @@ export default class Stone extends Shape {
         this.ctx.fillRect(
             this.x * this.size + this.offsetSize,
             this.y * this.size + this.offsetSize,
-            this.size - this.offsetSize / 2,
-            this.size - this.offsetSize / 2
+            this.size - this.offsetSize * 2,
+            this.size - this.offsetSize * 2
         );
         this.ctx.strokeRect(
             this.x * this.size + this.offsetSize,
             this.y * this.size + this.offsetSize,
-            this.size - this.offsetSize / 2,
-            this.size - this.offsetSize / 2
+            this.size - this.offsetSize * 2,
+            this.size - this.offsetSize * 2
         );
         this.ctx.restore();
     }

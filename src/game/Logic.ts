@@ -1,5 +1,7 @@
 import Config from './Config';
-import Stone from './shape/Stone';
+import Stone from '../shape/Stone';
+import Ball, { BallType } from '../shape/Ball';
+import Circle from '../shape/Circle';
 
 export default class Logic {
 
@@ -22,7 +24,19 @@ export default class Logic {
         canvas.height = Config.CANVAS_HEIGHT;
     }
 
+    private redBall = new Ball();
+
+    private blueBall = new Ball({
+        ballType: BallType.Blue
+    });
+
+    private circle = new Circle();
+
     private stones: Stone[] = [];
+
+    private get currentStone() {
+        return this.stones[this.currentStep - 1];
+    }
 
     private createStones() {
         const list: Stone[] = [];
@@ -39,6 +53,9 @@ export default class Logic {
         }
         list.sort((a, b) => a.step - b.step);
         this.stones = list;
+
+        this.redBall.x = this.currentStone.x;
+        this.redBall.y = this.currentStone.y;
     }
 
     private drawStones() {
@@ -47,28 +64,34 @@ export default class Logic {
         }
     }
 
-
     private draw() {
         this.drawStones();
+        this.redBall.draw();
     }
 
     private moveToCenter() {
-        const stone = this.stones[this.currentStep - 1];
+        const stone = this.currentStone;
         const center = {
             x: Config.GAME_WIDTH / (2 * Config.BLOCK_SIZE),
             y: Config.GAME_HEIGHT / (2 * Config.BLOCK_SIZE)
         };
         const offset = {
-            x: center.x - stone.x,
-            y: center.y - stone.y
+            x: center.x - stone.x - 1,
+            y: center.y - stone.y - 1
         };
-        Config.canvas.style.cssText = [
-            `transform:translate3d(${offset.x * stone.size}px,${offset.y * stone.size}px,0)`
-        ].join(';');
+        // Config.canvas.style.cssText = [
+        //     `transform:translate3d(${offset.x * stone.size}px,${offset.y * stone.size}px,0)`
+        // ].join(';');
+        Config.canvas.style.transform = `translate3d(${offset.x * stone.size}px,${offset.y * stone.size}px,0)`;
     }
 
     public moveNext() {
+        // step+1
         this.currentStep++;
+        // circle
+        this.circle.moveTo(this.currentStone.x, this.currentStone.y);
+
         this.moveToCenter();
     }
+
 }

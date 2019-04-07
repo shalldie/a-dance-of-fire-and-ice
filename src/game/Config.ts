@@ -1,4 +1,4 @@
-import mapArr from './map.json';
+import mapArr from '../map.json';
 
 /**
  * 游戏相关配置、全局变量
