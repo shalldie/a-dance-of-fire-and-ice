@@ -42,24 +42,25 @@ export default class Stone extends Shape {
      */
     public next: Stone;
 
-    draw() {
-        this.ctx.save();
+    draw(ctx?: CanvasRenderingContext2D) {
+        ctx = ctx || this.ctx;
+        ctx.save();
 
-        this.ctx.fillStyle = this.backgroundColor;
-        this.ctx.strokeStyle = this.borderColor;
+        ctx.fillStyle = this.backgroundColor;
+        ctx.strokeStyle = this.borderColor;
 
-        this.ctx.fillRect(
+        ctx.fillRect(
             this.x * this.size + this.offsetSize,
             this.y * this.size + this.offsetSize,
             this.size - this.offsetSize * 2,
             this.size - this.offsetSize * 2
         );
-        this.ctx.strokeRect(
+        ctx.strokeRect(
             this.x * this.size + this.offsetSize,
             this.y * this.size + this.offsetSize,
             this.size - this.offsetSize * 2,
             this.size - this.offsetSize * 2
         );
-        this.ctx.restore();
+        ctx.restore();
     }
 }
