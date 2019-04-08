@@ -20,11 +20,6 @@ export default abstract class Shape implements IShape {
 
     public height = 0;
 
-    constructor(shape?: IShape) {
-        // shape && Object.keys(shape).forEach(key => this[key] = shape[key]);
-        shape && Object.assign(this, shape);
-    }
-
     /**
      * 是否需要画出来
      *
@@ -47,5 +42,17 @@ export default abstract class Shape implements IShape {
      * @memberof Shape
      */
     public abstract draw(): void
+
+    /**
+     * 给当前实例添加属性
+     *
+     * @param {IShape} shape
+     * @returns {this}
+     * @memberof Shape
+     */
+    public extend(shape: IShape): this {
+        Object.assign(this, shape);
+        return this;
+    }
 
 }

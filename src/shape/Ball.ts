@@ -22,11 +22,6 @@ export default class Ball extends Shape {
      */
     public ballType = BallType.Red;
 
-    constructor(shape?: IShape) {
-        super(shape);
-        shape && Object.assign(this, shape);
-    }
-
     public draw() {
 
         this.ctx.save();

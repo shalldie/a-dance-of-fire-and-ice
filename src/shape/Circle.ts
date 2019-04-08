@@ -16,11 +16,6 @@ export default class Circle extends Shape {
 
     public readonly r: number = Config.BLOCK_SIZE;
 
-    constructor(shape?: IShape) {
-        super(shape);
-        shape && Object.assign(this, shape);
-    }
-
     /**
      * 移动坐标
      *

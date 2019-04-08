@@ -24,7 +24,7 @@ export default class Stone extends Shape {
      *
      * @memberof Stone
      */
-    public step = 0;
+    public step: number;
 
     /**
      * 上一个
@@ -41,11 +41,6 @@ export default class Stone extends Shape {
      * @memberof Stone
      */
     public next: Stone;
-
-    constructor(shape?: IShape) {
-        super(shape);
-        shape && Object.assign(this, shape);
-    }
 
     draw() {
         this.ctx.save();

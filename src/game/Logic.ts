@@ -26,7 +26,7 @@ export default class Logic {
 
     private redBall = new Ball();
 
-    private blueBall = new Ball({
+    private blueBall = new Ball().extend({
         ballType: BallType.Blue
     });
 
@@ -44,10 +44,7 @@ export default class Logic {
             for (let y = 0; y < Config.mapHeight; y++) {
                 const step = Config.map[x][y];
                 if (step > 0) {
-                    // const stone = new Stone({ x, y });
-                    // stone.step = step;
-                    // list.push(stone);
-                    list.push(new Stone({ x, y, step }));
+                    list.push(new Stone().extend({ x, y, step }));
                 }
             }
         }

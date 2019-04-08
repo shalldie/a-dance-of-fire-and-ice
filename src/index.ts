@@ -4,3 +4,4 @@ import Logic from './game/Logic';
 
 
 window['logic'] = new Logic();
+
