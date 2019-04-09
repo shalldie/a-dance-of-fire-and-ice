@@ -4,12 +4,12 @@ import IShape from "./IShape";
 
 export default class Circle extends Shape {
 
-    private createTime = new Date().getTime();
+    public createTime = new Date().getTime();
 
     private get rotate(): number {
         const anglePerMil = -Math.PI / 1000;
         const diffTime = new Date().getTime() - this.createTime;
-        return ~~(diffTime * anglePerMil % (2 * Math.PI));
+        return diffTime * anglePerMil % (2 * Math.PI);
     }
 
     public readonly size = Config.BLOCK_SIZE;
@@ -32,10 +32,16 @@ export default class Circle extends Shape {
         this.ctx.save();
         this.ctx.setLineDash([6]);
         this.ctx.lineWidth = 2;
+        this.ctx.strokeStyle = '#660099';
+        this.ctx.translate(
+            (this.x + 0.5) * this.size,
+            (this.y + 0.5) * this.size
+        );
         this.ctx.rotate(this.rotate);
+        this.ctx.beginPath();
         this.ctx.arc(
-            this.x * this.size + Config.BLOCK_SIZE / 2,
-            this.y * this.size + Config.BLOCK_SIZE / 2,
+            0,
+            0,
             this.r,
             0,
             2 * Math.PI
